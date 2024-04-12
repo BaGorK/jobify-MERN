@@ -6,13 +6,13 @@ import links from '../utils/links';
 import { NavLink } from 'react-router-dom';
 
 function SmallSidebar() {
-  const data = useDashboardContext();
-  console.log(data);
+  const { showSidebar, toggleSidebar } = useDashboardContext();
+
   return (
     <Wrapper>
-      <div className='sidebar-container show-sidebar'>
+      <div className={`sidebar-container ${showSidebar ? 'show-sidebar' : ''}`}>
         <div className='content'>
-          <button type='button' className='close-btn'>
+          <button type='button' className='close-btn' onClick={toggleSidebar}>
             <FaTimes />
           </button>
           <header>
@@ -23,7 +23,12 @@ function SmallSidebar() {
               const { path, text, icon } = link;
 
               return (
-                <NavLink to={path} key={text} className='nav-link'>
+                <NavLink
+                  to={path}
+                  key={text}
+                  className='nav-link'
+                  onClick={toggleSidebar}
+                >
                   <span className='icon'>{icon}</span>
                   {text}
                 </NavLink>
