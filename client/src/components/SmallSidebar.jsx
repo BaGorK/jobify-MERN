@@ -28,6 +28,7 @@ function SmallSidebar() {
                   key={text}
                   className='nav-link'
                   onClick={toggleSidebar}
+                  end
                 >
                   <span className='icon'>{icon}</span>
                   {text}

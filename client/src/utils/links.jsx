@@ -5,8 +5,8 @@ import { ImProfile } from 'react-icons/im';
 import { MdAdminPanelSettings } from 'react-icons/md';
 
 const links = [
-  { text: 'add job', path: '.', icon: <FaWpforms /> },
-  { text: 'all jobs', path: 'all-jobs', icon: <MdQueryStats /> },
+  { text: 'add job', path: '.', icon: <FaWpforms /> }, // navigate to the parent
+  { text: 'all jobs', path: 'all-jobs', icon: <MdQueryStats /> }, // the liks are relative
   { text: 'stats', path: 'stats', icon: <IoBarChartSharp /> },
   { text: 'profile', path: 'profile', icon: <ImProfile /> },
   { text: 'admin', path: 'admin', icon: <MdAdminPanelSettings /> },
