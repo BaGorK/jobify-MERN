@@ -3,6 +3,7 @@ import Logo from './Logo';
 import Wrapper from '../assets/wrappers/Navbar';
 import { useDashboardContext } from '../pages/DashboardLayout';
 import LogoutContainer from './LogoutContainer';
+import ThemeToggle from './ThemeToggle';
 
 function Navbar() {
   const { toggleSidebar } = useDashboardContext();
@@ -17,6 +18,7 @@ function Navbar() {
           <h4 className='logo-text'>dashboard</h4>
         </div>
         <div className='btn-container'>
+          <ThemeToggle />
           <LogoutContainer />
         </div>
       </div>
