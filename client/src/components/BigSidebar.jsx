@@ -13,7 +13,7 @@ function BigSidebar() {
           <header>
             <Logo />
           </header>
-          <NavLinks />
+          <NavLinks isBigSidebar />
         </div>
       </div>
     </Wrapper>
