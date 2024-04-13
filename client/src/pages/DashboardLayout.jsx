@@ -15,7 +15,10 @@ function DashboardLayout() {
     setShowSidebar(!showSidebar);
   };
   const toggleDarkTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
+    const newDarkTheme = !isDarkTheme;
+    setIsDarkTheme(newDarkTheme);
+
+    document.body.classList.toggle('dark-theme', newDarkTheme);
   };
   const logoutUser = async () => {
     console.log('User logged out');
