@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { NavLink } from 'react-router-dom';
 import links from '../utils/links';
 import { useDashboardContext } from '../pages/DashboardLayout';
