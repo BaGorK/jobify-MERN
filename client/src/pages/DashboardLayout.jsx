@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
 import { Outlet } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Dashboard';
@@ -6,10 +7,10 @@ import { createContext, useContext, useState } from 'react';
 
 const DashboardContext = createContext();
 
-function DashboardLayout() {
+function DashboardLayout({ isDarkThemeEnabled }) {
   const user = { name: 'Edmealem' };
   const [showSidebar, setShowSidebar] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
@@ -19,6 +20,7 @@ function DashboardLayout() {
     setIsDarkTheme(newDarkTheme);
 
     document.body.classList.toggle('dark-theme', newDarkTheme);
+    localStorage.setItem('darkTheme', newDarkTheme);
   };
   const logoutUser = async () => {
     console.log('User logged out');
