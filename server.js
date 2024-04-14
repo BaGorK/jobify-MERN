@@ -70,9 +70,28 @@ app.patch('/api/v1/jobs/:id', (req, res) => {
   }
   job.company = company || job.company;
   job.position = position || job.position;
+
   return res.status(200).json({
     status: 'success',
     data: job,
+  });
+});
+
+app.delete('/api/v1/jobs/:id', (req, res) => {
+  const { id } = req.params;
+  const job = jobs.find((job) => job.id === id);
+
+  if (!job) {
+    return res.status(404).json({
+      status: 'error',
+      message: 'Job not found',
+    });
+  }
+  jobs = jobs.filter((job) => job.id !== id);
+
+  return res.status(204).json({
+    status: 'success',
+    data: null,
   });
 });
 
