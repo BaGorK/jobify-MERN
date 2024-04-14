@@ -3,6 +3,13 @@ dotenv.config();
 
 import express from 'express';
 import morgan from 'morgan';
+import { nanoid } from 'nanoid';
+
+let jobs = [
+  { id: nanoid(), company: 'apple', position: 'software engineer' },
+  { id: nanoid(), company: 'google', position: 'product manager' },
+  { id: nanoid(), company: 'facebook', position: 'data scientist' },
+];
 
 const app = express();
 
@@ -12,8 +19,11 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.get('/', (req, res) => {
-  return res.status(200).send('hello from the server side...');
+app.get('/api/v1/jobs', (req, res) => {
+  return res.status(200).json({
+    status: 'success',
+    data: jobs,
+  });
 });
 
 app.post('/', (req, res) => {
