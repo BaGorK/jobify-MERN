@@ -26,10 +26,20 @@ app.get('/api/v1/jobs', (req, res) => {
   });
 });
 
-app.post('/', (req, res) => {
-  return res.status(200).json({
+app.post('/api/v1/jobs', (req, res) => {
+  const { company, position } = req.body;
+  if (!company || !position) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Please provide company and position',
+    });
+  }
+
+  const job = { id: nanoid(), company, position };
+  jobs.push(job);
+  res.status(201).json({
     status: 'success',
-    data: req.body,
+    data: job,
   });
 });
 
