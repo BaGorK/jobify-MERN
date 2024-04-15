@@ -95,6 +95,13 @@ app.delete('/api/v1/jobs/:id', (req, res) => {
   });
 });
 
+app.use('*', (req, res) => {
+  return res.status(404).json({
+    status: 'fail',
+    message: 'not found',
+  });
+});
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
