@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import Job from '../models/jobModel.js';
 
 import { nanoid } from 'nanoid';
+import { NotFoundError } from '../errors/customErrors.js';
 
 let jobs = [
   { id: nanoid(), company: 'apple', position: 'software engineer' },
@@ -50,12 +51,7 @@ export const updateJob = async (req, res) => {
     runValidators: true,
   });
 
-  if (!updatedJob) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Job not found',
-    });
-  }
+  if (!updatedJob) throw new NotFoundError(`no job found with id ${id}`);
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
@@ -66,16 +62,11 @@ export const updateJob = async (req, res) => {
 
 export const deleteJob = async (req, res) => {
   const { id } = req.params;
-  const job = Job.findByIdAndDelete(id);
+  const job = await Job.findByIdAndDelete(id);
 
-  if (!job) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'Job not found',
-    });
-  }
+  if (!job) throw new NotFoundError(`no job found with id ${id}`);
 
-  return res.status(StatusCodes.NO_CONTENT).json({
+  return res.status(StatusCodes.OK).json({
     status: 'success',
     msg: 'Job deleted',
     data: null,

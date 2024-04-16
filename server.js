@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 
 const app = express();
 import jobRouter from './routes/jobRoute.js';
+import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -25,13 +26,7 @@ app.use('*', (req, res) => {
 });
 
 // GLOBAL ERROR HANDLER
-app.use((err, req, res, next) => {
-  console.log(err);
-  return res.status(500).json({
-    status: 'error',
-    message: 'Something went wrong',
-  });
-});
+app.use(errorHandlerMiddleware);
 
 const PORT = process.env.PORT || 3000;
 
