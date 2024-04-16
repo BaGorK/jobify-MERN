@@ -1,12 +1,12 @@
+import 'express-async-errors';
 import * as dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 
-import jobRouter from './routes/jobRoute.js';
-
 const app = express();
+import jobRouter from './routes/jobRoute.js';
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -38,7 +38,7 @@ const PORT = process.env.PORT || 3000;
 try {
   await mongoose.connect(process.env.DB_LOCAL);
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}...`);
+    console.log(`DB CONNECTED... && Server is running on port ${PORT}...`);
   });
 } catch (err) {
   console.log(err);
