@@ -23,6 +23,7 @@ export const createJob = async (req, res) => {
 
   res.status(201).json({
     status: 'success',
+    msg: 'Job created',
     data: job,
   });
 };
@@ -46,26 +47,29 @@ export const getJob = async (req, res) => {
 
 export const updateJob = async (req, res) => {
   const { id } = req.params;
-  const { company, position } = req.body;
-  const job = jobs.find((job) => job.id === id);
-  if (!job) {
+
+  const updatedJob = await Job.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!updatedJob) {
     return res.status(404).json({
       status: 'error',
       message: 'Job not found',
     });
   }
-  job.company = company || job.company;
-  job.position = position || job.position;
 
   return res.status(200).json({
     status: 'success',
-    data: job,
+    msg: 'Job updated',
+    data: updatedJob,
   });
 };
 
 export const deleteJob = async (req, res) => {
   const { id } = req.params;
-  const job = jobs.find((job) => job.id === id);
+  const job = Job.findByIdAndDelete(id);
 
   if (!job) {
     return res.status(404).json({
@@ -73,10 +77,10 @@ export const deleteJob = async (req, res) => {
       message: 'Job not found',
     });
   }
-  jobs = jobs.filter((job) => job.id !== id);
 
   return res.status(204).json({
     status: 'success',
+    msg: 'Job deleted',
     data: null,
   });
 };
