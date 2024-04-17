@@ -36,8 +36,6 @@ export const getJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findById(id);
 
-  if (!job) throw new NotFoundError(`no job found with id ${id}`);
-
   return res.status(StatusCodes.OK).json({
     status: 'success',
     data: job,
@@ -52,8 +50,6 @@ export const updateJob = async (req, res) => {
     runValidators: true,
   });
 
-  if (!updatedJob) throw new NotFoundError(`no job found with id ${id}`);
-
   return res.status(StatusCodes.OK).json({
     status: 'success',
     msg: 'Job updated',
@@ -64,8 +60,6 @@ export const updateJob = async (req, res) => {
 export const deleteJob = async (req, res) => {
   const { id } = req.params;
   const job = await Job.findByIdAndDelete(id);
-
-  if (!job) throw new NotFoundError(`no job found with id ${id}`);
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
