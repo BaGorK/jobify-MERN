@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 
 const app = express();
 import jobRouter from './routes/jobRoute.js';
+import authRouter from './routes/authRoute.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 
 if (process.env.NODE_ENV === 'development') {
@@ -17,6 +18,7 @@ app.use(express.json());
 
 //  JOBS Router
 app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/auth', authRouter);
 
 app.use('*', (req, res) => {
   return res.status(404).json({
