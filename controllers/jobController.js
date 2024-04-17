@@ -2,8 +2,8 @@ import { StatusCodes } from 'http-status-codes';
 
 import Job from '../models/jobModel.js';
 
-import { nanoid } from 'nanoid';
 import { NotFoundError } from '../errors/customErrors.js';
+import { nanoid } from 'nanoid';
 
 let jobs = [
   { id: nanoid(), company: 'apple', position: 'software engineer' },
@@ -24,7 +24,7 @@ export const createJob = async (req, res) => {
   const { company, position } = req.body;
   const job = await Job.create({ company, position });
 
-  res.status(StatusCodes.CREATED).json({
+  return res.status(StatusCodes.CREATED).json({
     status: 'success',
     msg: 'Job created',
     data: job,
