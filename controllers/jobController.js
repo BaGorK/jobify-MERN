@@ -22,8 +22,7 @@ export const getAllJobs = async (req, res) => {
 };
 
 export const createJob = async (req, res) => {
-  const { company, position } = req.body;
-  const job = await Job.create({ company, position });
+  const job = await Job.create(req.body);
 
   return res.status(StatusCodes.CREATED).json({
     status: 'success',
@@ -59,7 +58,7 @@ export const updateJob = async (req, res) => {
 
 export const deleteJob = async (req, res) => {
   const { id } = req.params;
-  const job = await Job.findByIdAndDelete(id);
+  await Job.findByIdAndDelete(id);
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
