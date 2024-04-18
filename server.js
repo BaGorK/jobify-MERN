@@ -9,6 +9,7 @@ const app = express();
 import jobRouter from './routes/jobRoute.js';
 import authRouter from './routes/authRoute.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
+import { authenticateUser } from './middleware/authMiddleware.js';
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -17,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 
 //  JOBS Router
-app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/jobs', authenticateUser, jobRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use('*', (req, res) => {
