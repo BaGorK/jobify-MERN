@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import User from '../models/userModel.js';
-import { hashPassword } from '../utils/passwordUtils.js';
+import { comparePassword, hashPassword } from '../utils/passwordUtils.js';
 import { UnauthenticatedError } from '../errors/customErrors.js';
 
 export const register = async (req, res) => {
@@ -12,7 +12,7 @@ export const register = async (req, res) => {
 
   const user = await User.create({ ...req.body, role });
 
-  res.status(StatusCodes.CREATED).json({
+  return res.status(StatusCodes.CREATED).json({
     status: 'success',
     msg: 'user created',
   });
@@ -20,6 +20,11 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-  if (!user) throw new UnauthenticatedError('Invalid credentials');
-  res.send('login');
+
+  const isValidUser =
+    user && (await comparePassword(req.body.password, user.password));
+
+  if (!isValidUser) throw new UnauthenticatedError('Invalid credentials');
+
+  return res.send('login');
 };
