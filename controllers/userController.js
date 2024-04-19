@@ -13,9 +13,15 @@ export const getCurrentUser = async (req, res) => {
   });
 };
 
+export const updateUser = async (req, res) => {
+  const updateUser = await User.findByIdAndUpdate(req.user.userId, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  return res.status(StatusCodes.OK).json({ msg: 'update user' });
+};
+
 export const getApplicationStats = async (req, res) => {
   return res.status(StatusCodes.OK).json({ msg: 'get application stats' });
-};
-export const updateUser = async (req, res) => {
-  return res.status(StatusCodes.OK).json({ msg: 'update user' });
 };
