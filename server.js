@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 const app = express();
 import jobRouter from './routes/jobRoute.js';
 import authRouter from './routes/authRoute.js';
+import userRouter from './routes/userRoute.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 import { authenticateUser } from './middleware/authMiddleware.js';
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 
 //  JOBS Router
 app.use('/api/v1/jobs', authenticateUser, jobRouter);
+app.use('/api/v1/users', authenticateUser, userRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use('*', (req, res) => {
