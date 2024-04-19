@@ -4,7 +4,13 @@ import Job from '../models/jobModel.js';
 
 export const getCurrentUser = async (req, res) => {
   const user = await User.findById(req.user.userId);
-  return res.status(StatusCodes.OK).json({ status: 'success', data: user });
+  //TODO: instance methods run any way. why we call them?
+  const userWithoutPassword = user.toJSON();
+
+  return res.status(StatusCodes.OK).json({
+    status: 'success',
+    data: userWithoutPassword,
+  });
 };
 
 export const getApplicationStats = async (req, res) => {

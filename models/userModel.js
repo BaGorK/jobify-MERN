@@ -19,4 +19,12 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+UserSchema.methods.toJSON = function () {
+  let obj = this.toObject(); // this point to the current user instance
+  delete obj.password;
+  console.log('instance method run');
+
+  return obj;
+};
+
 export default mongoose.model('User', UserSchema);
