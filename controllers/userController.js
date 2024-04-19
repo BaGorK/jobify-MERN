@@ -14,7 +14,10 @@ export const getCurrentUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const updateUser = await User.findByIdAndUpdate(req.user.userId, req.body, {
+  const obj = { ...req.body };
+  delete obj.password;
+
+  const updateUser = await User.findByIdAndUpdate(req.user.userId, obj, {
     new: true,
     runValidators: true,
   });
