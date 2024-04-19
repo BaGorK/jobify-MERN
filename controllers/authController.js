@@ -43,7 +43,7 @@ export const login = async (req, res) => {
   });
 };
 
-export const logout = async (req, res) => {
+export const logout = (req, res) => {
   res.cookie('token', 'logged out', { expires: new Date(Date.now()) });
 
   return res.status(StatusCodes.OK).json({
