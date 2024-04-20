@@ -20,7 +20,6 @@ const DashboardContext = createContext();
 function DashboardLayout({ isDarkThemeEnabled }) {
   const { user } = useLoaderData();
 
-  // const user = { name: 'Edmealem' };
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
 
@@ -56,7 +55,7 @@ function DashboardLayout({ isDarkThemeEnabled }) {
           <div>
             <Navbar />
             <div className='dashboard-page'>
-              <Outlet />
+              <Outlet context={user} />
             </div>
           </div>
         </main>
