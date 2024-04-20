@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
-import { Outlet, redirect, useLoaderData } from 'react-router-dom';
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom';
 import customFetch from '../utils/customFetch';
 import Wrapper from '../assets/wrappers/Dashboard';
 import { BigSidebar, Navbar, SmallSidebar } from '../components';
 import { createContext, useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const loader = async () => {
   try {
@@ -19,6 +20,7 @@ const DashboardContext = createContext();
 
 function DashboardLayout({ isDarkThemeEnabled }) {
   const { user } = useLoaderData();
+  const navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
@@ -34,7 +36,9 @@ function DashboardLayout({ isDarkThemeEnabled }) {
     localStorage.setItem('darkTheme', newDarkTheme);
   };
   const logoutUser = async () => {
-    console.log('User logged out');
+    navigate('/');
+    await customFetch.get('/auth/logout');
+    toast.success('Logging out...');
   };
 
   return (
