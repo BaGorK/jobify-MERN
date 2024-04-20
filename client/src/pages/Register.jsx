@@ -1,12 +1,19 @@
-import { Link } from 'react-router-dom';
+/* eslint-disable react-refresh/only-export-components */
+import { Form, Link } from 'react-router-dom';
 
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import { FormRow, Logo } from '../components';
 
+export const action = async (data) => {
+  console.log(data);
+
+  return null;
+};
+
 function Register() {
   return (
     <Wrapper>
-      <form className='form'>
+      <Form method='POST' className='form'>
         <Logo />
         <h4>Register</h4>
         <FormRow
@@ -34,7 +41,7 @@ function Register() {
             Login
           </Link>
         </p>
-      </form>
+      </Form>
     </Wrapper>
   );
 }
