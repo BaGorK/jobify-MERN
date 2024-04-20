@@ -4,6 +4,7 @@ import { Form, Link, redirect, useNavigation } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import { FormRow, Logo } from '../components';
 import customFetch from '../utils/customFetch';
+import { toast } from 'react-toastify';
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -11,9 +12,11 @@ export async function action({ request }) {
   const data = Object.fromEntries(formData);
   try {
     await customFetch.post('/auth/register', data);
+    toast.success('Registration successful');
     return redirect('/login');
   } catch (error) {
     console.error(error);
+    toast.error(error?.response?.data?.message || 'Registration fail');
     return error;
   }
 }
