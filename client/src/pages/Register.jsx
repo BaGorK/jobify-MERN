@@ -1,14 +1,22 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, redirect } from 'react-router-dom';
 
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 import { FormRow, Logo } from '../components';
+import customFetch from '../utils/customFetch';
 
-export const action = async (data) => {
-  console.log(data);
+export async function action({ request }) {
+  const formData = await request.formData();
 
-  return null;
-};
+  const data = Object.fromEntries(formData);
+  try {
+    await customFetch.post('/auth/register', data);
+    return redirect('/login');
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+}
 
 function Register() {
   return (
@@ -45,5 +53,4 @@ function Register() {
     </Wrapper>
   );
 }
-
 export default Register;
