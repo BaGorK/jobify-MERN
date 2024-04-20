@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-refresh/only-export-components */
-import { Outlet, redirect } from 'react-router-dom';
+import { Outlet, redirect, useLoaderData } from 'react-router-dom';
 import customFetch from '../utils/customFetch';
 import Wrapper from '../assets/wrappers/Dashboard';
 import { BigSidebar, Navbar, SmallSidebar } from '../components';
@@ -18,7 +18,9 @@ export const loader = async () => {
 const DashboardContext = createContext();
 
 function DashboardLayout({ isDarkThemeEnabled }) {
-  const user = { name: 'Edmealem' };
+  const { user } = useLoaderData();
+
+  // const user = { name: 'Edmealem' };
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(isDarkThemeEnabled);
 

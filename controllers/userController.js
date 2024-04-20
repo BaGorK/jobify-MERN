@@ -9,7 +9,7 @@ export const getCurrentUser = async (req, res) => {
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
-    data: userWithoutPassword,
+    user: userWithoutPassword,
   });
 };
 
