@@ -20,6 +20,10 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use(cookieParser());
 
+app.get('/api/v1/test', (req, res) => {
+  res.json({ msg: 'test route' });
+});
+
 //  JOBS Router
 app.use('/api/v1/jobs', authenticateUser, jobRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
