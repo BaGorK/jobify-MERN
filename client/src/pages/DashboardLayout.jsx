@@ -61,7 +61,7 @@ function DashboardLayout({ isDarkThemeEnabled }) {
           <div>
             <Navbar />
             <div className='dashboard-page'>
-              <Outlet context={user} />
+              <Outlet context={{ user }} />
             </div>
           </div>
         </main>
