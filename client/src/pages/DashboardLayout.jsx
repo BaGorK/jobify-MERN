@@ -28,6 +28,7 @@ function DashboardLayout({ isDarkThemeEnabled }) {
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+
   const toggleDarkTheme = () => {
     const newDarkTheme = !isDarkTheme;
     setIsDarkTheme(newDarkTheme);
@@ -35,6 +36,7 @@ function DashboardLayout({ isDarkThemeEnabled }) {
     document.body.classList.toggle('dark-theme', newDarkTheme);
     localStorage.setItem('darkTheme', newDarkTheme);
   };
+
   const logoutUser = async () => {
     navigate('/');
     await customFetch.get('/auth/logout');
