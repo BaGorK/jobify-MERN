@@ -1,4 +1,4 @@
-import { FormRow } from '../components';
+import { FormRow, FormRowSelect } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
 import { Form, useNavigation, useOutletContext } from 'react-router-dom';
@@ -23,28 +23,19 @@ function AddJob() {
             labelText='job location'
             defaultValue={user.location}
           />
+          <FormRowSelect
+            labelText='job status'
+            name='jobStatus'
+            defaultValue={JOB_STATUS.PENDING}
+            list={Object.values(JOB_STATUS)}
+          />
 
-          <div className='form-row'>
-            <label htmlFor='jobStatus' className='form-label'>
-              job status
-            </label>
-
-            <select
-              name='jobStatus'
-              id='jobStatus'
-              className='form-select'
-              defaultValue={JOB_STATUS.PENDING}
-            >
-              {Object.values(JOB_STATUS).map((itemValue) => {
-                return (
-                  <option key={itemValue} value={itemValue}>
-                    {itemValue}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
+          <FormRowSelect
+            labelText='job type'
+            name='jobType'
+            defaultValue={JOB_TYPE.PENDING}
+            list={Object.values(JOB_TYPE)}
+          />
           <button className='btn btn-block form-btn'>
             {isSubmitting ? 'submitting...' : 'submit'}
           </button>
