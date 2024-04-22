@@ -1,7 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 import { toast } from 'react-toastify';
 import { JobsContainer, SearchContainer } from '../components';
 import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';
+import { createContext, useContext } from 'react';
 
 export const loader = async ({ request }) => {
   try {
@@ -15,16 +17,19 @@ export const loader = async ({ request }) => {
   }
 };
 
+const AllJobsContext = createContext();
+
 function AllJobs() {
   const { data } = useLoaderData();
-  console.log(data);
 
   return (
-    <>
+    <AllJobsContext.Provider value={{ data }}>
       <SearchContainer />
       <JobsContainer />
-    </>
+    </AllJobsContext.Provider>
   );
 }
+
+export const useAllJobsContext = () => useContext(AllJobsContext);
 
 export default AllJobs;

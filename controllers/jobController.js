@@ -17,7 +17,7 @@ export const getAllJobs = async (req, res) => {
   return res.status(StatusCodes.OK).json({
     status: 'success',
     result: jobs.length,
-    data: jobs,
+    jobs,
   });
 };
 
