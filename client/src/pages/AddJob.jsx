@@ -2,7 +2,12 @@
 import { FormRow, FormRowSelect } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { JOB_STATUS, JOB_TYPE } from '../../../utils/constants';
-import { Form, useNavigation, useOutletContext } from 'react-router-dom';
+import {
+  Form,
+  redirect,
+  useNavigation,
+  useOutletContext,
+} from 'react-router-dom';
 import customFetch from '../utils/customFetch';
 import { toast } from 'react-toastify';
 
@@ -13,7 +18,7 @@ export const action = async ({ request }) => {
   try {
     await customFetch.post('/jobs', data);
     toast.success('Job added successfully');
-    return null;
+    return redirect('all-jobs');
   } catch (error) {
     toast.error(error?.response?.data?.msg);
     return error;
