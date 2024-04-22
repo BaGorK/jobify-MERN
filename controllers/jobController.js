@@ -39,7 +39,7 @@ export const getJob = async (req, res) => {
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
-    data: job,
+    job,
   });
 };
 
