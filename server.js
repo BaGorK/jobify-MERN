@@ -12,11 +12,17 @@ import authRouter from './routes/authRoute.js';
 import userRouter from './routes/userRoute.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 import { authenticateUser } from './middleware/authMiddleware.js';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.json());
 app.use(cookieParser());
 
