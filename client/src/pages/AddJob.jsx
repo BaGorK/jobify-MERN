@@ -27,7 +27,6 @@ export const action = async ({ request }) => {
 
 function AddJob() {
   const { user } = useOutletContext();
-  console.log(user);
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
