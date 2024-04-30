@@ -24,7 +24,7 @@ function Login() {
 
   const loginDemoUser = async () => {
     const data = {
-      email: 'guest@test.com',
+      email: 'guest@gmail.com',
       password: 'test1234',
     };
 
@@ -42,7 +42,7 @@ function Login() {
       <Form method='POST' className='form'>
         <Logo />
         <h4>login</h4>
-        <FormRow type='email' name='email' defaultValue='test@test.com' />
+        <FormRow type='email' name='email' defaultValue='guest@gmail.com' />
         <FormRow type='password' name='password' defaultValue='test1234' />
 
         <SubmitBtn />
