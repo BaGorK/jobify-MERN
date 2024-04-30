@@ -15,7 +15,7 @@ export const action = async ({ request }) => {
     toast.success('Job added successfully');
     return redirect('all-jobs');
   } catch (error) {
-    toast.error(error?.response?.data?.msg);
+    toast.error(error?.response?.data?.message);
     return error;
   }
 };

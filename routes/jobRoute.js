@@ -11,14 +11,17 @@ import {
   validateJobInput,
   validateIdParam,
 } from '../middleware/validationMiddleware.js';
+import { checkForGuestUser } from '../middleware/authMiddleware.js';
 
 const Router = express.Router();
 
-Router.route('/').get(getAllJobs).post(validateJobInput, createJob);
+Router.route('/')
+  .get(getAllJobs)
+  .post(checkForGuestUser, validateJobInput, createJob);
 
 Router.route('/:id')
   .get(validateIdParam, getJob)
-  .patch(validateJobInput, validateIdParam, updateJob)
-  .delete(validateIdParam, deleteJob);
+  .patch(checkForGuestUser, validateJobInput, validateIdParam, updateJob)
+  .delete(checkForGuestUser, validateIdParam, deleteJob);
 
 export default Router;
