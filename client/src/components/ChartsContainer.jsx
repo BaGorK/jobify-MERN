@@ -1,4 +1,4 @@
-function ChartsContainer() {
+function ChartsContainer({ data }) {
   return <div>Charts container</div>;
 }
 
