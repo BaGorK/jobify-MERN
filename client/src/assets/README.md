@@ -5081,9 +5081,9 @@ export default SubmitBtn;
 
 ```json
 {
-  "name": "Zippy",
-  "email": "test@test.com",
-  "password": "secret123",
+  "name": "guest user",
+  "email": "guest@test.com",
+  "password": "test1234",
   "lastName": "ShakeAndBake",
   "location": "Codeville"
 }
