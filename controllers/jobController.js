@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
-
+import mongoose from 'mongoose';
+import day from 'dayjs';
 import Job from '../models/jobModel.js';
 
 import { NotFoundError } from '../errors/customErrors.js';
@@ -67,4 +68,8 @@ export const deleteJob = async (req, res) => {
     msg: 'Job deleted',
     data: null,
   });
+};
+
+export const showStats = async (req, res) => {
+  res.send('stats');
 };
