@@ -5,13 +5,13 @@ import AreaChart from './AreaChart';
 import Wrapper from '../assets/wrappers/ChartsContainer';
 
 function ChartsContainer({ data }) {
-  const [barChart, setBarChart] = useState(true);
+  const [barChart, setBarChart] = useState(false);
 
   return (
     <Wrapper>
       <h4>Monthly Applications</h4>
       <button type='button' onClick={() => setBarChart(!barChart)}>
-        {barChart ? 'Areat Chart' : 'Bar Chart'}
+        {barChart ? 'Area Chart' : 'Bar Chart'}
       </button>
       {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}
     </Wrapper>
