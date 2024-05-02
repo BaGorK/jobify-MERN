@@ -13,7 +13,7 @@ let jobs = [
 ];
 
 export const getAllJobs = async (req, res) => {
-  const { search, jobStatus, jobType } = req.query;
+  const { search, jobStatus, jobType, sort } = req.query;
 
   const queryObj = {
     createdBy: req.user.userId,
@@ -34,7 +34,16 @@ export const getAllJobs = async (req, res) => {
     queryObj.jobType = jobType;
   }
 
-  const jobs = await Job.find(queryObj);
+  const sortOptions = {
+    newest: '-createdAt',
+    oldest: 'createdAt',
+    'a-z': 'position',
+    'z-a': '-position',
+  };
+
+  const sortKey = sortOptions[sort] || sortOptions.newest;
+
+  const jobs = await Job.find(queryObj).sort(sortKey);
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
