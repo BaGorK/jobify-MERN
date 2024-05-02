@@ -13,7 +13,20 @@ let jobs = [
 ];
 
 export const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
+  const { search } = req.query;
+
+  const queryObj = {
+    createdBy: req.user.userId,
+  };
+
+  if (search) {
+    queryObj.$or = [
+      { position: { $regex: search, $options: 'i' } },
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  const jobs = await Job.find(queryObj);
 
   return res.status(StatusCodes.OK).json({
     status: 'success',
