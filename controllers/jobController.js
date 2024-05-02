@@ -13,7 +13,7 @@ let jobs = [
 ];
 
 export const getAllJobs = async (req, res) => {
-  const { search } = req.query;
+  const { search, jobStatus, jobType } = req.query;
 
   const queryObj = {
     createdBy: req.user.userId,
@@ -24,6 +24,14 @@ export const getAllJobs = async (req, res) => {
       { position: { $regex: search, $options: 'i' } },
       { company: { $regex: search, $options: 'i' } },
     ];
+  }
+
+  if (jobStatus && jobStatus != 'all') {
+    queryObj.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType != 'all') {
+    queryObj.jobType = jobType;
   }
 
   const jobs = await Job.find(queryObj);
