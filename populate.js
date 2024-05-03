@@ -6,9 +6,9 @@ import User from './models/userModel.js';
 import Job from './models/jobModel.js';
 
 try {
-  await mongoose.connect(process.env.DB_LOCAL);
+  await mongoose.connect(process.env.DB_URI);
 
-  //   const user = await User.findOne({ email: 'edmealem@gmail.com' });
+  // const user = await User.findOne({ email: 'edmealem@gmail.com' });
   const user = await User.findOne({ email: 'guest@gmail.com' });
 
   const jsonJobs = JSON.parse(
