@@ -12,7 +12,7 @@ const SearchContainer = () => {
         <div className='form-center'>
           {/* search position */}
 
-          <FormRow type='search' name='search' defaultValue='' />
+          <FormRow type='search' name='search' defaultValue='a' />
           <FormRowSelect
             labelText='job status'
             name='jobStatus'
