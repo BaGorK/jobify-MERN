@@ -18,7 +18,6 @@ const SearchContainer = () => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         onChange(form);
-        console.log('hello');
       }, 1000);
     };
   };
