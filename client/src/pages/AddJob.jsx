@@ -28,8 +28,8 @@ function AddJob() {
       <Form method='POST' className='form'>
         <h4 className='form-title'>add job</h4>
         <div className='form-center'>
-          <FormRow type='text' name='position' defaultValue='front end dev' />
-          <FormRow type='text' name='company' defaultValue='ABC plc' />
+          <FormRow type='text' name='position' />
+          <FormRow type='text' name='company' />
           <FormRow
             type='text'
             name='jobLocation'

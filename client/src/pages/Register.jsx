@@ -27,21 +27,11 @@ function Register() {
       <Form method='POST' className='form'>
         <Logo />
         <h4>Register</h4>
-        <FormRow
-          type='text'
-          name='name'
-          labelText='first name'
-          defaultValue='Edmealem'
-        />
-        <FormRow
-          type='text'
-          name='lastName'
-          labelText='last name'
-          defaultValue='K.'
-        />
-        <FormRow type='text' name='location' defaultValue='Bahir dar' />
-        <FormRow type='email' name='email' defaultValue='test@test.com' />
-        <FormRow type='password' name='password' defaultValue='test1234' />
+        <FormRow type='text' name='name' labelText='first name' />
+        <FormRow type='text' name='lastName' labelText='last name' />
+        <FormRow type='text' name='location' />
+        <FormRow type='email' name='email' />
+        <FormRow type='password' name='password' />
 
         <SubmitBtn />
         <p>
