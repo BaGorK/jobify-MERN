@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles = createGlobalStyle`
 /* ============= GLOBAL CSS =============== */
 
 *,
@@ -329,3 +332,6 @@ button:disabled {
   background: #ffeeee;
   color: #d66a6a;
 }
+
+`;
+export default GlobalStyles;

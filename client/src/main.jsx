@@ -4,12 +4,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import App from './App.jsx';
-import './index.css';
+import GlobalStyles from './styles/GlobalStyles.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-
     <ToastContainer position='top-center' />
+    <GlobalStyles />
+    <App />
   </React.StrictMode>
 );
