@@ -5763,7 +5763,7 @@ const SearchContainer = () => {
           <FormRow
             type='search'
             name='search'
-            defaultValue={search}
+            defaultValue={search
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
@@ -5772,7 +5772,7 @@ const SearchContainer = () => {
             labelText='job status'
             name='jobStatus'
             list={['all', ...Object.values(JOB_STATUS)]}
-            defaultValue={jobStatus}
+            defaultValue={jobStatus }
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
