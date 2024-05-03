@@ -5590,7 +5590,7 @@ export const getAllJobs = async (req, res) => {
   }
 
   const sortOptions = {
-    newest: '-createdAt',
+    newest: '-createdAt',flatpak install flathub org.kde.haruna
     oldest: 'createdAt',
     'a-z': 'position',
     'z-a': '-position',
