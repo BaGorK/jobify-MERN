@@ -5,3 +5,5 @@ const customFetch = axios.create({
 });
 
 export default customFetch;
+
+// const response = await customFetch.get('/jobs/stats');

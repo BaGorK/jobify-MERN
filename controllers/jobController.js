@@ -116,6 +116,7 @@ export const showStats = async (req, res) => {
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ]);
+  // stats => [{_id: pending, count : 30}, {_id: interview, count: 27}, {_id: declined, count: 12}]
 
   stats = stats.reduce((acc, cur) => {
     const { _id: title, count } = cur;
@@ -123,6 +124,7 @@ export const showStats = async (req, res) => {
 
     return acc;
   }, {});
+  // { pending: 30, interview: 27, declined: 12 }
 
   const defaultStats = {
     pending: stats?.pending || 0,
@@ -142,13 +144,37 @@ export const showStats = async (req, res) => {
     { $limit: 6 },
   ]);
 
-  //   {
+  // [{
   //   "_id": {
   //     "year": 2023,
   //     "month": 5
   //   },
   //   "count": 6
   // },
+  //   {
+  //   "_id": {
+  //     "year": 2022,
+  //     "month": 4
+  //   },
+  //   "count": 13
+  // }]
+
+  // ------------>
+
+  // let monthlyApplications = [
+  //   {
+  //     date: 'May 23',
+  //     count: 12,
+  //   },
+  //   {
+  //     date: 'Jun 23',
+  //     count: 9,
+  //   },
+  //   {
+  //     date: 'Jul 23',
+  //     count: 3,
+  //   },
+  // ];
 
   monthlyApplications = monthlyApplications
     .map((item) => {
@@ -165,21 +191,6 @@ export const showStats = async (req, res) => {
       return { date, count };
     })
     .reverse();
-
-  // let monthlyApplications = [
-  //   {
-  //     date: 'May 23',
-  //     count: 12,
-  //   },
-  //   {
-  //     date: 'Jun 23',
-  //     count: 9,
-  //   },
-  //   {
-  //     date: 'Jul 23',
-  //     count: 3,
-  //   },
-  // ];
 
   res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications });
 };
