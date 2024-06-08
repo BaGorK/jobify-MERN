@@ -18,8 +18,10 @@ try {
   const jobs = jsonJobs.map((job) => {
     return { ...job, createdBy: user._id };
   });
+
   await Job.deleteMany({ createdBy: user._id });
   await Job.create(jobs);
+  
   console.log('MOCK DATA UPLOADED SUCCESSFULLY!!!');
   process.exit(0);
 } catch (error) {

@@ -1,10 +1,10 @@
-import { StatusCodes } from 'http-status-codes';
 import mongoose from 'mongoose';
 import day from 'dayjs';
-import Job from '../models/jobModel.js';
 
-import { NotFoundError } from '../errors/customErrors.js';
 import { nanoid } from 'nanoid';
+import { StatusCodes } from 'http-status-codes';
+
+import Job from '../models/jobModel.js';
 
 let jobs = [
   { id: nanoid(), company: 'apple', position: 'software engineer' },
@@ -20,6 +20,8 @@ export const getAllJobs = async (req, res) => {
   };
 
   if (search) {
+    // queryObj.position = search or queryObj.company = search
+    // options: 'i' => ignore case
     queryObj.$or = [
       { position: { $regex: search, $options: 'i' } },
       { company: { $regex: search, $options: 'i' } },

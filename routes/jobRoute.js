@@ -20,6 +20,7 @@ Router.route('/')
   .get(getAllJobs)
   .post(checkForGuestUser, validateJobInput, createJob);
 
+// should be placed before the '/:id' route otherwise it assumes 'stats' as id
 Router.route('/stats').get(showStats);
 
 Router.route('/:id')
